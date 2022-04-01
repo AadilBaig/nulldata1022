@@ -4,7 +4,9 @@
     <string name="weather">Weather</string>
     <string name="mainMenu">Main Menu</string>
     <string name="outputMessage">TEST</string>
-    <string name="searchWord">Search Word:</string>
+    <string name="searchWord">Search Word</string>
     <string name="addButton">Add Word</string>
     <string name="addDef">Add Definition</string>
+    <string name="word">Word</string>
+    <string name="def">Definition</string>
 </resources>

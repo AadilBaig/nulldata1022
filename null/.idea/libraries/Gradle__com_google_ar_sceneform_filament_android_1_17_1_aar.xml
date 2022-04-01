@@ -4,6 +4,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bb9bbc405f5e69cdddd5cd84a9c7eb23/transformed/jetified-filament-android-1.17.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bb9bbc405f5e69cdddd5cd84a9c7eb23/transformed/jetified-filament-android-1.17.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bb9bbc405f5e69cdddd5cd84a9c7eb23/transformed/jetified-filament-android-1.17.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/da6c7dfdc2c87011355fdf5e2cbadb4a/transformed/jetified-filament-android-1.17.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/da6c7dfdc2c87011355fdf5e2cbadb4a/transformed/jetified-filament-android-1.17.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/da6c7dfdc2c87011355fdf5e2cbadb4a/transformed/jetified-filament-android-1.17.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
