@@ -14,7 +14,9 @@
         android:theme="@style/Theme.Null" >
         <activity
             android:name=".MainDefinition"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
+
         <activity
             android:name=".MainWeather"
             android:exported="false" />

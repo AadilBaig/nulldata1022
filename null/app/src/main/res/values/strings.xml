@@ -9,4 +9,5 @@
     <string name="addDef">Add Definition</string>
     <string name="word">Word</string>
     <string name="def">Definition</string>
+    <string name="random">Random</string>
 </resources>

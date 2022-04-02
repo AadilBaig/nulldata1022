@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainDefinition"
     android:background="@color/eggshellBlue"
-    >
+    tools:context=".MainDefinition">
 
     <Button
         android:id="@+id/mainButton"
         android:layout_width="175dp"
         android:layout_height="60dp"
-        android:layout_marginTop="25dp"
         android:text="@string/mainMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,23 +19,21 @@
 
     <Button
         android:id="@+id/addButton"
-        android:layout_width="158dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="110dp"
+        android:layout_height="62dp"
         android:text="@string/addButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/defDisplay"
+        app:layout_constraintEnd_toStartOf="@+id/randButton"
         app:layout_constraintStart_toEndOf="@+id/searchWord"
         app:layout_constraintTop_toBottomOf="@+id/inputDesc" />
 
     <Button
         android:id="@+id/searchWord"
-        android:layout_width="158dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="110dp"
+        android:layout_height="62dp"
         android:text="@string/searchWord"
+        app:layout_constraintBottom_toTopOf="@+id/defDisplay"
         app:layout_constraintEnd_toStartOf="@+id/addButton"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputWord" />
 
@@ -45,20 +41,18 @@
         android:id="@+id/wordBox"
         android:layout_width="320dp"
         android:layout_height="200dp"
+        android:layout_marginBottom="64dp"
         android:scrollbars="vertical"
-        android:text="@string/outputMessage"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addButton"
-        app:layout_constraintVertical_bias="0.386" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/inputDesc"
         android:layout_width="169dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginTop="96dp"
         android:layout_marginEnd="4dp"
         android:ems="10"
@@ -72,25 +66,33 @@
     <EditText
         android:id="@+id/inputWord"
         android:layout_width="169dp"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginTop="96dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="word"
+        android:text="@string/word"
         app:layout_constraintEnd_toStartOf="@+id/inputDesc"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainButton" />
 
     <TextView
-        android:textAlignment="center"
         android:id="@+id/defDisplay"
         android:layout_width="320dp"
         android:layout_height="40dp"
-        android:text=""
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/wordBox"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addButton" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/randButton"
+        android:layout_width="110dp"
+        android:layout_height="62dp"
+        android:text="@string/random"
+        app:layout_constraintBottom_toTopOf="@+id/defDisplay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addButton"
+        app:layout_constraintTop_toBottomOf="@+id/inputDesc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

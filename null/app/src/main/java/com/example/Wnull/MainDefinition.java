@@ -10,12 +10,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.regex.Pattern;
 
 public class MainDefinition extends AppCompatActivity {
 private Button mainButton;
 private Button addButton;
 private Button searchWord;
-private HashMap<String, String> definitions = new HashMap<String, String>();
+private Button randButton;
+Map<String, String> definitions = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 private TextView wordBox;
 private TextView defDisplay;
 EditText inputWord;
@@ -30,7 +35,6 @@ EditText inputDesc;
         wordBox = (TextView) findViewById(R.id.wordBox);
         inputWord = (EditText) findViewById(R.id.inputWord);
         inputDesc = (EditText) findViewById(R.id.inputDesc);
-
         mainButton.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View view) {
@@ -42,7 +46,7 @@ EditText inputDesc;
         addButton.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View view) {
-                addWord();
+                addWord(inputWord.getText().toString(), inputDesc.getText().toString());
             }
         });
 
@@ -51,7 +55,15 @@ EditText inputDesc;
         searchWord.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View view) {
-                searchWords();
+                searchWords(inputWord.getText().toString());
+            }
+        });
+
+        randButton = (Button) findViewById(R.id.randButton);
+        randButton.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View view) {
+                randomWord();
             }
         });
     }
@@ -61,23 +73,29 @@ EditText inputDesc;
         startActivity(intent);
     }
 
-    public void addWord(){
-        if(!definitions.keySet().contains(inputWord.getText().toString())) {
-            System.out.println(inputWord.getText().toString() + ' ' + inputDesc.getText().toString());
-            definitions.put(inputWord.getText().toString(), inputDesc.getText().toString());
+    public void addWord(String word, String def){
+        if(!definitions.keySet().contains(word)) {
+            definitions.put(word, def);
+            defDisplay.setText("Word successfully added!");
+        } else {
+            defDisplay.setText("Word is already added!");
         }
         wordBox.setText(definitions.keySet().toString());
-        defDisplay.setText("Word successfully added!");
         inputWord.setText("Word");
         inputDesc.setText("Definition");
     }
 
-    public void searchWords() {
-        for (String i : definitions.keySet()) {
-            System.out.println(i);
+    public void searchWords(String word) {
+        if(definitions.keySet().contains(word)) {
+            defDisplay.setText(definitions.get(word));
+        } else {
+            defDisplay.setText("Word not found.");
         }
-        TextView defDisplay = (TextView) findViewById(R.id.defDisplay);
-        defDisplay.setText(definitions.get(inputWord.getText().toString()));
-        System.out.println(definitions.get(inputWord.getText().toString()));
+    }
+
+    public void randomWord() {
+        if(definitions.size() == 0) defDisplay.setText("No words in bank");
+        int rand = (int) Math.floor(Math.random() * definitions.size());
+        defDisplay.setText(definitions.values().toArray()[rand].toString());
     }
 }

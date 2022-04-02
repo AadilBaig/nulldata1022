@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.loopj.android.http.RequestParams;
 
 public class MainWeather extends AppCompatActivity {
-    private Button toMain, toDefinition;
+   /* private Button toMain, toDefinition;
 
     final String APP_ID = "64109c0ef36369e30a5e98b4fc0bc4ca";
     final String weather_URL = "https://home.openweathermap.org/data/2.5/weather";
@@ -131,5 +131,5 @@ public class MainWeather extends AppCompatActivity {
         Intent intent = new Intent(this, MainDefinition.class);
         startActivity(intent);
     }
-
+*/
 }
