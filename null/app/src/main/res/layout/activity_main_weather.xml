@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,109 +8,111 @@
     tools:context=".MainWeather">
 
 
-        <ImageView
-            android:id="@+id/weatherIcon"
-            android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:layout_marginTop="110dp"
-            android:src="@drawable/searching"></ImageView>
+    <ImageView
+        android:id="@+id/weatherIcon"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_marginTop="110dp"
+        android:src="@drawable/searching"></ImageView>
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cityFinder"
+        android:layout_marginBottom="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="30dp"
+            android:text="0°C"
+            android:textColor="@color/black"
+            android:textSize="60sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/weatherCondition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/cityFinder"
-            android:layout_marginBottom="50dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/Temperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="30dp"
-                android:text="0°C"
-                android:textColor="@color/black"
-                android:textSize="60sp"
-                android:textStyle="bold"></TextView>
-
-            <TextView
-                android:id="@+id/weatherCondition"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="30sp"
-                android:text="retreiving"
-                android:textColor="@color/black"
-                android:textSize="25sp"></TextView>
-
-            <TextView
-                android:id="@+id/cityName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="30sp"
-                android:text="fetching"
-                android:textSize="40sp"
-                android:textStyle="bold"></TextView>
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/cityFinder"
-            android:background="@drawable/citybuttondesign"
-            android:layout_marginBottom="30dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Search For New City"
-                android:textColor="@color/white"
-                android:layout_centerInParent="true"
-                android:textSize="16dp"
-                ></TextView>
-
-        </RelativeLayout>
-
-        <EditText
-            android:id="@+id/searchCity"
-            android:layout_width="450dp"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:hint="Enter City Name"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:textSize="20dp"
+            android:paddingStart="30sp"
+            android:text="retreiving"
             android:textColor="@color/black"
-            android:layout_marginTop="400dp"
-            android:imeOptions="actionGo"
-            android:inputType="textAutoCorrect">
-        </EditText>
+            android:textSize="25sp"></TextView>
 
+        <TextView
+            android:id="@+id/cityName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="30sp"
+            android:text="fetching"
+            android:textSize="40sp"
+            android:textStyle="bold"></TextView>
 
-        <Button
-            android:id="@+id/toMain"
-            android:layout_width="180dp"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="215dp"
-            android:text="Main Menu"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/toDefinition"
-            android:layout_width="170dp"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="215dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:text="Definition Page"
-
-            />
+    <RelativeLayout
+        android:id="@+id/cityFinder"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp">
     </RelativeLayout>
+
+    <EditText
+        android:id="@+id/searchCity"
+        android:layout_width="450dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="400dp"
+        android:hint="Enter City Name"
+        android:imeOptions="actionGo"
+        android:inputType="textAutoCorrect"
+        android:textColor="@color/black"
+        android:textSize="20dp"></EditText>
+
+    <Button
+        android:id="@+id/cityFind"
+        android:layout_width="450dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="650dp"
+        android:layout_marginRight="30dp"
+        android:text="Search City"
+        android:textSize="20dp"></Button>
+
+
+
+    <Button
+        android:id="@+id/toMain"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="215dp"
+        android:text="Main Menu"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/toDefinition"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="215dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:text="Definition Page"
+        />
+
+
+</RelativeLayout>

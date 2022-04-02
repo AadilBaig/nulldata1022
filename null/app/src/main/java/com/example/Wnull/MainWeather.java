@@ -12,19 +12,28 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONObject; //!!!!!!!!!!!
+
+import cz.msebera.android.httpclient.Header;
+
+
 public class MainWeather extends AppCompatActivity {
-    private Button toMain, toDefinition;
+    private Button toMain, toDefinition, cityFinder;
 
     final String APP_ID = "64109c0ef36369e30a5e98b4fc0bc4ca";
-    final String weather_URL = "https://home.openweathermap.org/data/2.5/weather";
+    final String weather_URL = "https://api.openweathermap.org/data/2.5/weather";
     final long minTime = 5000;
     final float minDistance = 1000;
     final int RequestCode = 101;
@@ -34,12 +43,13 @@ public class MainWeather extends AppCompatActivity {
     RelativeLayout mCityFinder;
     LocationManager mLocationManager;
     LocationListener mLocationListener;
+    EditText cityField;
+    public String newCity = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_weather);
-
         weatherState = findViewById(R.id.weatherCondition);
         temperature = findViewById(R.id.Temperature);
         mweatherIcon = findViewById(R.id.weatherIcon);
@@ -47,6 +57,9 @@ public class MainWeather extends AppCompatActivity {
         nameOfCity = findViewById(R.id.cityName);
         toMain = (Button) findViewById(R.id.toMain);
         toDefinition = (Button) findViewById(R.id.toDefinition);
+
+        cityFinder = (Button) findViewById(R.id.cityFind);
+        cityField = (EditText) findViewById(R.id.searchCity);
 
         toMain.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
@@ -61,12 +74,32 @@ public class MainWeather extends AppCompatActivity {
                 openActivity2();
             }
         });
+
+        cityFinder.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View view) {
+                newCity = cityField.getText().toString();
+                onResume();
+            }
+        });
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        getWeatherForCurrentLocation();
+        if (newCity != null) {
+            getWeatherForNewCity(newCity);
+        } else {
+            getWeatherForCurrentLocation();
+        }
+    }
+
+    private void getWeatherForNewCity(String city) {
+        RequestParams params = new RequestParams();
+        params.put("q", city);
+        params.put("appID",APP_ID);
+        letsdoSomeNetworking(params);
     }
 
     private void getWeatherForCurrentLocation() {
@@ -78,6 +111,10 @@ public class MainWeather extends AppCompatActivity {
                 String longitude = String.valueOf(location.getLongitude());
 
                 RequestParams params = new RequestParams();
+                params.put("lat", latitude);
+                params.put("lon", longitude);
+                params.put("appid", APP_ID);
+                letsdoSomeNetworking(params);
             }
 
             @Override
@@ -103,9 +140,44 @@ public class MainWeather extends AppCompatActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION},RequestCode);
             return;
         }
         mLocationManager.requestLocationUpdates(locationProvider, minTime, minDistance, mLocationListener);
+    }
+
+    private void letsdoSomeNetworking (RequestParams params) {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(weather_URL, params, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                Toast.makeText(MainWeather.this, "Data retrieved successfully", Toast.LENGTH_SHORT).show();
+                weatherData weatherD = weatherData.fromJson(response);
+                updateUI(weatherD);
+                //super.onSuccess(statusCode, headers, response);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                //super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+        });
+    }
+
+    private void updateUI(weatherData weather) {
+        temperature.setText(weather.getmTemperature());
+        nameOfCity.setText(weather.getmCity());
+        weatherState.setText(weather.getmWeatherType());
+        int resourceID = getResources().getIdentifier(weather.getmIcon(), "drawable", getPackageName());
+        mweatherIcon.setImageResource(resourceID);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mLocationManager != null) {
+            mLocationManager.removeUpdates(mLocationListener);
+        }
     }
 
     @Override
@@ -131,5 +203,4 @@ public class MainWeather extends AppCompatActivity {
         Intent intent = new Intent(this, MainDefinition.class);
         startActivity(intent);
     }
-
 }
