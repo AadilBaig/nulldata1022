@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/eggshellBlue"
     tools:context=".MainWeather">
-    <!--
+
 
         <ImageView
             android:id="@+id/weatherIcon"
@@ -113,6 +113,4 @@
             android:text="Definition Page"
 
             />
-
-    -->
     </RelativeLayout>
