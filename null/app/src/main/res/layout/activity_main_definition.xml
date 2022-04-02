@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainDefinition">
+    tools:context=".MainDefinition"
+    android:background="@color/eggshellBlue"
+    >
 
     <Button
         android:id="@+id/mainButton"
@@ -74,17 +76,18 @@
         android:layout_marginTop="96dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/word"
+        android:text="word"
         app:layout_constraintEnd_toStartOf="@+id/inputDesc"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainButton" />
 
     <TextView
+        android:textAlignment="center"
         android:id="@+id/defDisplay"
-        android:layout_width="115dp"
-        android:layout_height="23dp"
-        android:text="re"
+        android:layout_width="320dp"
+        android:layout_height="40dp"
+        android:text=""
         app:layout_constraintBottom_toTopOf="@+id/wordBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

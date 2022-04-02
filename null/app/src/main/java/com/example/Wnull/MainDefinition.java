@@ -17,23 +17,27 @@ private Button addButton;
 private Button searchWord;
 private HashMap<String, String> definitions = new HashMap<String, String>();
 private TextView wordBox;
+private TextView defDisplay;
 EditText inputWord;
 EditText inputDesc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("heyreyw");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_definition);
         mainButton = (Button) findViewById(R.id.mainButton);
+        defDisplay = (TextView) findViewById(R.id.defDisplay);
         wordBox = (TextView) findViewById(R.id.wordBox);
         inputWord = (EditText) findViewById(R.id.inputWord);
         inputDesc = (EditText) findViewById(R.id.inputDesc);
+
         mainButton.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View view) {
                 openActivity1();
             }
         });
+
         addButton = (Button) findViewById(R.id.addButton);
         addButton.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
@@ -41,6 +45,7 @@ EditText inputDesc;
                 addWord();
             }
         });
+
         wordBox.setMovementMethod(new ScrollingMovementMethod());
         searchWord = (Button) findViewById(R.id.searchWord);
         searchWord.setOnClickListener(new android.view.View.OnClickListener() {
@@ -62,6 +67,9 @@ EditText inputDesc;
             definitions.put(inputWord.getText().toString(), inputDesc.getText().toString());
         }
         wordBox.setText(definitions.keySet().toString());
+        defDisplay.setText("Word successfully added!");
+        inputWord.setText("Word");
+        inputDesc.setText("Definition");
     }
 
     public void searchWords() {
